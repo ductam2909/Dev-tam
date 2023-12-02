@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wraper = styled.div`
-  margin: 0 10px;
+  margin: 0 20px;
 `;
 
 export const Main = styled.div`
@@ -10,6 +10,8 @@ export const Main = styled.div`
 export const Item = styled.div`
   background-color: #F7F7F7;
   padding: 10px;
+  width: 100%;
+  /* margin: 0 -20px; */
   border-radius: 10px;
 
   p {
