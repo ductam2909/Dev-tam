@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './styled';
 import { Button, Col, Input, Row } from 'antd';
-import ReactPlayer from 'react-player';
+// import ReactPlayer from 'react-player';
 import axios from 'axios';
 import Tables from './component/Table/Table';
 import { SearchOutlined } from '@ant-design/icons';
@@ -30,23 +30,23 @@ export default function Home() {
     }
   }, [valueSearch]);
 
-  const Playvideo = () => {
-    return (
-      <S.Item>
-        <ReactPlayer
-          width="100%"
-          // height="400px"
-          playing
-          // onProgress={true}
-          controls
-          // playIcon={<button>Play</button>}
-          light="https://i.stack.imgur.com/zw9Iz.png"
-          url="https://res.cloudinary.com/dh2wb2nzw/video/upload/v1701435873/video1/ng%C3%A2n_s%C3%A1ch_bt787d.mp4"
-        />
-        <p>Tên video</p>
-      </S.Item>
-    );
-  };
+  // const Playvideo = () => {
+  //   return (
+  //     <S.Item>
+  //       <ReactPlayer
+  //         width="100%"
+  //         // height="400px"
+  //         playing
+  //         // onProgress={true}
+  //         controls
+  //         // playIcon={<button>Play</button>}
+  //         light="https://i.stack.imgur.com/zw9Iz.png"
+  //         url="https://res.cloudinary.com/dh2wb2nzw/video/upload/v1701435873/video1/ng%C3%A2n_s%C3%A1ch_bt787d.mp4"
+  //       />
+  //       <p>Tên video</p>
+  //     </S.Item>
+  //   );
+  // };
   const hadleSearch = () => {
     const result = data.filter((item: any) => item?.title?.includes(valueSearch));
     setDataTable(result);
