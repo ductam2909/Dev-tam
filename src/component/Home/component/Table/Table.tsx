@@ -2,7 +2,7 @@ import React from 'react';
 import { Space, Table, Tag } from 'antd';
 
 import type { ColumnsType } from 'antd/es/table';
-// import ReactPlayer from 'react-player';
+import ReactPlayer from 'react-player';
 import * as S from './styled';
 
 interface DataType {
@@ -43,8 +43,8 @@ export default function Tables({ datas }: TablesProps): JSX.Element {
   const Playvideo = (prams: any) => {
     return (
       <S.Item>
-        <iframe width="100%" height="500" src={prams?.url}></iframe>
-        {/* <ReactPlayer
+        {/* <iframe width="100%" height="500" src={prams?.url}></iframe> */}
+        <ReactPlayer
           width="100%"
           height="500px"
           playing
@@ -53,7 +53,7 @@ export default function Tables({ datas }: TablesProps): JSX.Element {
           // playIcon={<button>Play</button>}
           light="https://i.stack.imgur.com/zw9Iz.png"
           url={prams?.url}
-        /> */}
+        />
         <p>{prams?.title}</p>
       </S.Item>
     );
