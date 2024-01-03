@@ -5,7 +5,7 @@ import html2canvas from 'html2canvas';
 import JsPdf from 'jspdf';
 import * as XLSX from 'xlsx';
 
-export default function Home() {
+export default function ThuyNoiDia() {
   const [jsonData, setJsonData] = useState<any>(null);
   const [name, setName] = useState<any>();
   const [valueSelect, setValueSelect] = useState<any>();
@@ -114,16 +114,6 @@ export default function Home() {
       }
     }
   }, [name]);
-  const optionSelect = [
-    {
-      value: 'lienvan',
-      label: 'Liên Vận',
-    },
-    {
-      value: 'thuynd',
-      label: 'Thủy Nội địa',
-    },
-  ];
   return (
     <S.Wraper>
       <Row gutter={[16, 16]}>

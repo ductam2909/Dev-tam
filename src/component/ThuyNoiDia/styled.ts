@@ -42,13 +42,13 @@ p {
 
 .thoihan_tu {
     position: absolute;
-    bottom: 37px;
+    bottom: 36px;
     left: 170px;
 }
 
 .thoihan_den {
     position: absolute;
-    bottom: 37px;
+    bottom: 36px;
     left: 400px;
 }
 .number {
