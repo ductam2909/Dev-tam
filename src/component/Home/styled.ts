@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import logo from '../../../public/logo512.png';
+import lienvan from '../../../src/access/img/lienvan.jpg'
 
 export const Wraper = styled.div`
   margin: 0 20px;
@@ -13,7 +14,7 @@ export const Image = styled.div`
 position: relative;
 width: 70%;
 height: 500px;
-background-image: url(http://localhost:3000/img/lienvan-lao.jpg);
+background-image: url(${lienvan});
 background-size:cover;
 background-repeat: no-repeat;
 background-position: center; 
