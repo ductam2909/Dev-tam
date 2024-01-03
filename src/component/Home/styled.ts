@@ -12,49 +12,44 @@ export const Main = styled.div`
 
 export const Image = styled.div`
 position: relative;
-width: 70%;
-height: 500px;
+width: 800px;
+  height: 500px;
+  background-size: contain; /* Sử dụng contain thay vì cover */
+  background-repeat: no-repeat;
+  background-position: center; /* Canh giữa */
 background-image: url(${lienvan});
-background-size:cover;
-background-repeat: no-repeat;
-background-position: center; 
 p {
-    font-size: 16px;
-    /* font-weight: bold; */
+    font-size: 14px;
     font-weight: 400;
 }
 .name {
-    /* position: absolute;
-    bottom: 175px;
-    left: 70px; */
-    padding-left: 65px;
-    padding-top: 282px;
-    line-height: 28px;
+    position: absolute;
+    bottom: 188px;
+    left: 65px;
     width: 400px;
-    /* overflow-wrap: break-word; */
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
 .sodangky {
     position: absolute;
-    bottom: 92px;
+    bottom: 113px;
     left: 65px;
 }
 
 .thoihan_tu {
     position: absolute;
-    bottom: 37px;
-    left: 170px;
+    bottom: 65px;
+    left: 130px;
 }
 
 .thoihan_den {
     position: absolute;
-    bottom: 37px;
-    left: 400px;
+    bottom: 65px;
+    left: 340px;
 }
 .number {
     position: absolute;
-    left: 720px;
-    top: 55px;
+    left: 640px;
+    top: 79px;
 }
 `;
