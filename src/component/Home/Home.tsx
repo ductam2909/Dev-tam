@@ -4,6 +4,7 @@ import { Button, Col, Input, Row, Select } from 'antd';
 import html2canvas from 'html2canvas';
 import JsPdf from 'jspdf';
 import * as XLSX from 'xlsx';
+import { log } from 'console';
 
 export default function Home() {
   const [jsonData, setJsonData] = useState<any>(null);

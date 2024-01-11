@@ -74,6 +74,31 @@ export const ExcludeConfig2 = styled.p`
   word-spacing: 0.1;
   line-height: 12pt;
 `;
+// export const Image = styled.div`
+// position: relative;
+// width: 1748px;
+//   height: 2480px;
+//   background-size: contain; /* Sử dụng contain thay vì cover */
+//   background-repeat: no-repeat;
+//   background-position: center; /* Canh giữa */
+// background-image: url(${lienvan});
+// p {
+//     font-size: 14px;
+//     font-weight: 400;
+// }
+// .name {
+//     position: absolute;
+//     bottom: 188px;
+//     left: 65px;
+//     width: 400px;
+//     word-wrap: break-word;
+//     overflow-wrap: break-word;
+// }
+// .sodangky {
+//     position: absolute;
+//     bottom: 113px;
+//     left: 65px;
+// }
 
 export const Input = styled.div.attrs<{ $config?: any }>((props) => ({}))`
   ${(props) => {
