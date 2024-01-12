@@ -11,15 +11,19 @@ const optionSelect = [
     value: 'thuynd',
     label: 'Thủy Nội địa',
   },
+  {
+    value: 'giayphepxetaplai',
+    label: 'Giấy phép xe tập lái',
+  },
 ];
 const App: React.FC = () => {
   const [valuSelect, SetValueSelect] = useState<any>();
 
   return (
     <div className="main">
-      <Row justify={'center'} align={'middle'} gutter={[16, 16]}>
+      {/* <Row justify={'center'} align={'middle'} gutter={[16, 16]}>
         <Col md={4}>
-          <h4>Chọn Loại Giấy phép</h4>
+          <h4>Chọn Loại Giấp Phép</h4>
         </Col>
         <Col md={4}>
           <Select
@@ -33,7 +37,7 @@ const App: React.FC = () => {
             Thủy nội địa
           </Select>
         </Col>
-      </Row>
+      </Row> */}
       <AppRouter />
     </div>
   );

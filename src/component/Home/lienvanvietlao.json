@@ -1,0 +1,81 @@
+{
+  "img": "lienvanvietlao",
+  "size": {
+    "name": "a5",
+    "width": 595,
+    "height": 420,
+    "direction": "l"
+  },
+  "config": {
+    "soValue": {
+      "value": "Số:",
+      "position": "absolute",
+      "top": 109,
+      "left": 630,
+      "width": 400,
+      "wordWrap": "break-word",
+      "overflowWrap": "break-word",
+      "isField": false,
+      "fontFamily": "Times New Roman",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "color": "#000000",
+      "wordSpacing": 0.1
+    },
+    "donViKinhDoanhValue": {
+      "position": "absolute",
+      "top": 295,
+      "left": 60,
+      "width": 380,
+      "isField": false,
+      "fontFamily": "Times New Roman",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "color": "#000000",
+      "wordSpacing": 0.1
+    },
+    "soXeValue": {
+      "position": "absolute",
+      "top": 368,
+      "left": 100,
+      "width": 380,
+      "isField": false,
+      "fontFamily": "Times New Roman",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "color": "#000000",
+      "wordSpacing": 0.1
+    },
+    "ngayCapValue": {
+      "position": "absolute",
+      "top": 415,
+      "left": 139,
+      "width": 400,
+      "isField": false,
+      "fontFamily": "Times New Roman",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "color": "#000000",
+      "wordSpacing": 0.1,
+      "isDate": true
+    },
+    "thoiHanValue": {
+      "position": "absolute",
+      "top": 415,
+      "left": 345,
+      "width": 400,
+      "isField": false,
+      "fontFamily": "Times New Roman",
+      "fontSize": 12,
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "color": "#000000",
+      "wordSpacing": 0.1,
+      "isDate": true
+    }
+  }
+}

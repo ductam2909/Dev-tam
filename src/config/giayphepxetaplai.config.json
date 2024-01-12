@@ -1,0 +1,104 @@
+ {
+  "img": "giayphepxetaplai",
+  "size": {
+    "name": "A5",
+    "width": 1748,
+    "heigth": 2480
+  },
+  "config": {
+    "name": {
+      "position": "absolute",
+      "top": 267,
+      "left": 65,
+      "width": 400,
+      "wordWrap": "break-word",
+      "overflowWrap": "break-word"
+    },
+    "sodangky": {
+      "position": "absolute",
+      "top": 340,
+      "left": 65
+    },
+    "thoihan_tu": {
+      "position": "absolute",
+      "left": 340,
+      "top": 388
+    },
+    "thoihan_den": {
+      "position": "absolute",
+      "left": 340,
+      "top": 388
+    },
+    "number": {
+      "position": "absolute",
+      "left": 640,
+      "top": 79
+    },
+    "so": {
+      "value": "Số:",
+      "heigth": 0,
+      "width": 0,
+      "isField": true,
+      "fontFamily": "Times New Roman",
+      "fontSize": 10,
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "color": "#000000"
+    },
+    "soValue": {
+      "value": "00001",
+      "heigth": 0,
+      "width": 50,
+      "isField": false,
+      "fontFamily": "Times New Roman",
+      "fontSize": 10,
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "color": "#000000"
+    },
+    "capChoXeSo": {
+      "value": "Cấp cho xe số:",
+      "heigth": 10,
+      "width": 10,
+      "isField": true,
+      "fontFamily": "Times New Roman",
+      "fontSize": 10,
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "color": "#000000"
+    },
+    "capChoXeSoValue": {
+      "value": "123456",
+      "heigth": 10,
+      "width": 50,
+      "isField": false,
+      "fontFamily": "Times New Roman",
+      "fontSize": 10,
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "color": "#000000"
+    },
+    "loaiPhuongTien": {
+      "value": "Loại phương tiện:",
+      "heigth": 20,
+      "width": 20,
+      "isField": true,
+      "fontFamily": "Times New Roman",
+      "fontSize": 10,
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "color": "#000000"
+    },
+    "loaiPhuongTienValue": {
+      "value": "Xe máy",
+      "heigth": 20,
+      "width": 50,
+      "isField": false,
+      "fontFamily": "Times New Roman",
+      "fontSize": 10,
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "color": "#000000"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+ {
+  "img": "giaovienlaixe",
+  "size": {
+    "name": "a6",
+    "width": 420,
+    "height": 298,
+    "direction": "l"
+  },
+  "config": {
+    "so": {
+      "value": "Số:",
+      "position": "absolute",
+      "top": 86,
+      "left": 247,
+      "width": 400,
+      "wordWrap": "break-word",
+      "overflowWrap": "break-word",
+      "isField": true,
+      "fontFamily": "Times New Roman",
+      "fontSize": 12.5,
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "color": "#000000",
+      "wordSpacing": 0.1
+    }
+  }
+}

@@ -10,6 +10,12 @@ export default function Home() {
   const [name, setName] = useState<any>();
   const [valueSelect, setValueSelect] = useState<any>();
   const [infoImage, SetInfoImage] = useState<any>();
+  const [template, SetTemplate] = useState<any>('thuynoidia');
+  const [config, setConfig] = useState<any>();
+  const [arrayConfig, setArrayConfig] = useState<any>([]);
+  const [arrayConfigValue, setArrayConfigValue] = useState<any>([]);
+  const [dateArray, setDateArray] = useState<any>([]);
+  const [fullConfig, setFullConfig] = useState<any>();
 
   const handleFileChange = (e: any) => {
     const file = e.target.files[0];
@@ -39,15 +45,23 @@ export default function Home() {
     reader.readAsBinaryString(file);
   };
 
+  useEffect(() => {
+    if (name) {
+      setFullConfig(jsonData?.find((item: any) => item?.STT === parseInt(name)));
+    }
+  }, [jsonData, name]);
+  console.log(fullConfig, 'fullConfig');
+  console.log(name, 'name');
+
   const printPDF = () => {
     const input: HTMLElement | null = document?.getElementById('ids');
     if (input !== null) {
       html2canvas(input, { scale: 2, removeContainer: true }).then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
-        const pdf = new JsPdf('l', 'px', [600, (600 * canvas.height) / canvas.width]);
+        const pdf = new JsPdf('l', 'px', [1240, (1748 * canvas.height) / canvas.width]);
 
-        pdf.addImage(imgData, 'JPEG', 0, 0, 600, (600 * canvas.height) / canvas.width);
-        pdf.save(`${infoImage?.sodangky}.pdf`);
+        pdf.addImage(imgData, 'JPEG', 0, 0, 1240, (1748 * canvas.height) / canvas.width);
+        pdf.save(`1.pdf`);
       });
     }
   };
@@ -57,13 +71,13 @@ export default function Home() {
     if (input !== null) {
       html2canvas(input, { scale: 2, removeContainer: true }).then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
-        const pdf = new JsPdf('p', 'pt', 'a4');
+        const pdf = new JsPdf(config.size.direction, 'pt', config.size.name);
 
         const imgWidth = pdf.internal.pageSize.getWidth();
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        const imgHeight = pdf.internal.pageSize.getHeight();
 
         pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
-        pdf.save(`${infoImage?.sodangky}.pdf`);
+        pdf.save(`${name}.pdf`);
       });
     }
   };
@@ -94,63 +108,209 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (jsonData && name) {
-      const ketQuaLoc = jsonData?.filter((item: any) => item.HSTT === parseInt(name));
+    if (jsonData && name && arrayConfigValue?.length > 0) {
+      const excelStartDate = new Date('1899-12-30T00:00:00Z');
+      const ketQuaLoc = jsonData?.filter((item: any) => item?.STT === parseInt(name));
       setValueSelect(ketQuaLoc[0]);
-      console.log(ketQuaLoc);
 
       if (ketQuaLoc.length > 0) {
-        const ngayCap = new Date(ketQuaLoc[0]['ngay cap']);
-        const thoiHan = new Date(ketQuaLoc[0]['THỜI HẠN'] * 86400 * 1000);
+        const rs: any = {};
+        arrayConfigValue.forEach((element: any) => {
+          if (dateArray.includes(element)) {
+            if (typeof ketQuaLoc[0][element] === 'string') {
+              // eslint-disable-next-line @typescript-eslint/no-var-requires
+              const moment = require('moment');
+              const momentDate = moment(ketQuaLoc[0][element], 'DD/MM/YYYY');
 
-        const kq = {
-          donvi: ketQuaLoc[0]['ĐƠN VỊ'],
-          ngaycap: ketQuaLoc[0]['ngay cap'],
-          thoihan: thoiHan?.toLocaleDateString(),
-          sodangky: ketQuaLoc[0]['SỐ XE'],
-          number: ketQuaLoc[0]['so gpkd'],
-        };
-        SetInfoImage(kq);
+              // Lấy ngày đã chuyển đổi
+              rs[element] = momentDate.format('DD/MM/YYYY');
+            } else
+              rs[element] = new Intl.DateTimeFormat('en-GB', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+              }).format(new Date(excelStartDate.getTime() + ketQuaLoc[0][element] * 24 * 3600 * 1000));
+          } else rs[element] = ketQuaLoc[0][element];
+        });
+        SetInfoImage(rs);
       }
     }
   }, [name]);
+
+  const handleLoadSizeJSON = (e: any) => {
+    const handleFile = (e: any) => {
+      const content = e.target.result;
+      // You can set content in state and show it in render.
+    };
+
+    const handleChangeFile = (file: any) => {
+      const fileData = new FileReader();
+      fileData.onloadend = handleFile;
+      fileData.readAsText(file);
+    };
+  };
+
+  const configExclude1 = ['dateValue', 'monthValue', 'yearValue'];
+  const configExclude3 = ['soLuongValue', 'kieuValue', 'congSuatValue'];
+  const configExclude4 = ['trongTaiValue', 'loaiValue'];
+
+  useEffect(() => {
+    const fetchData = () => {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const jsonConfig = require(`./${template}.json`);
+      console.log(jsonConfig, 'jsonConfig');
+
+      const arrayConfigTemp: any = [];
+      const arrayConfigValueTemp: any = [];
+      const dateArrayTemp: any = [];
+      Object.keys(jsonConfig.config).forEach((ele: any) => {
+        if (jsonConfig.config[ele]?.isField) {
+          arrayConfigTemp.push(ele);
+        } else {
+          arrayConfigValueTemp.push(ele);
+        }
+        if (jsonConfig.config[ele]?.isDate) {
+          dateArrayTemp.push(ele);
+        }
+      });
+
+      setConfig(jsonConfig);
+      setArrayConfig(arrayConfigTemp);
+
+      setArrayConfigValue(arrayConfigValueTemp);
+      setDateArray(dateArrayTemp);
+    };
+    fetchData();
+  }, [template]);
+
   const optionSelect = [
     {
-      value: 'lienvan',
-      label: 'Liên Vận',
-    },
-    {
-      value: 'thuynd',
+      value: 'thuynoidia',
       label: 'Thủy Nội địa',
     },
+    {
+      value: 'giayphepxetaplai',
+      label: 'Giấy phép xe tập lái',
+    },
+    {
+      value: 'tauthuyvantaikhachdulich',
+      label: 'Tàu thủy vận tải khách du lịch',
+    },
+    {
+      value: 'giaovienlaixe',
+      label: 'Chứng nhận giáo viên dạy thực hành lái ô tô',
+    },
+    {
+      value: 'lienvanvietlao',
+      label: 'Giấy phép liên vận Việt - Lào',
+    },
+    {
+      value: 'bangtotnghiepthpt',
+      label: 'Bằng tốt nghiệp trung học phổ thông',
+    },
   ];
+
   return (
     <S.Wraper>
+      <Row justify={'center'} align={'middle'} gutter={[16, 16]}>
+        <Col md={4}>
+          <h4>Chọn Loại Giấp Phép</h4>
+        </Col>
+        <Col md={4}>
+          <Select
+            defaultValue={optionSelect[0]}
+            options={optionSelect}
+            style={{ minWidth: '100%' }}
+            onChange={(e) => {
+              SetTemplate(e);
+            }}
+          ></Select>
+        </Col>
+      </Row>
       <Row gutter={[16, 16]}>
         <Col span={24}>
-          <S.Image id="ids">
-            <p className="number">{infoImage?.number}</p>
-            <p className="name">{infoImage?.donvi}</p>
-            <p className="sodangky">{infoImage?.sodangky}</p>
-            <p className="thoihan_tu">{infoImage?.ngaycap}</p>
-            <p className="thoihan_den">1/1/2023</p>
-          </S.Image>
+          {config && (
+            <S.Input id="ids" $config={config}>
+              {console.log(arrayConfig, 'arrayConfig')}
+              {arrayConfig?.length > 0 &&
+                arrayConfig?.map((element: any, index: any) => (
+                  <p key={index} className={element}>
+                    {config?.config[element]?.value}
+                  </p>
+                ))}
+
+              {arrayConfigValue?.length > 0 &&
+                arrayConfigValue?.map((element: any, index: any) => (
+                  <p key={index} className={element || ''}>
+                    {infoImage ? infoImage[element] : ''}
+                  </p>
+                ))}
+              <S.ExcludeWrapper>
+                {fullConfig &&
+                  Object?.keys(fullConfig)?.filter((item: any) => configExclude3?.includes(item))?.length > 0 && (
+                    <S.ExcludeConfig1>
+                      <span>Số lượng, kiểu và công suất máy chính:</span>
+                      <span>
+                        {' '}
+                        {fullConfig?.soLuongValue}
+                        {fullConfig?.kieuValue && ', '}
+                        {fullConfig?.kieuValue} {fullConfig?.congSuat && ', '}
+                        {fullConfig?.congSuat}
+                      </span>
+                    </S.ExcludeConfig1>
+                  )}
+                {fullConfig &&
+                  Object?.keys(fullConfig)?.filter((item: any) => configExclude4?.includes(item))?.length > 0 && (
+                    <S.ExcludeConfig2>
+                      <span>Trọng tải toàn phần, số lượng người được phép chở, sức kéo, đẩy:</span>
+                      <span>
+                        {' '}
+                        {fullConfig?.trongTaiValue}
+                        {fullConfig?.loaiValue && ' '}
+                        {fullConfig?.loaiValue}
+                      </span>
+                    </S.ExcludeConfig2>
+                  )}
+                {/* {fullConfig && */}
+                {/* Object?.keys(fullConfig)?.filter((item: any) => configExclude1?.includes(item))?.length > 0 && ( */}
+                <S.ExcludeConfig2>
+                  <S.Date>
+                    Quảng Nam, ngày {fullConfig?.dateValue || '    '} tháng {fullConfig?.monthValue || '    '} năm{' '}
+                    {fullConfig?.yearValue || '    '}
+                  </S.Date>
+                </S.ExcludeConfig2>
+                {/* )} */}
+              </S.ExcludeWrapper>
+            </S.Input>
+          )}
         </Col>
         <Col md={8}>
           <Input onChange={(e) => handerfilter(e?.target?.value)} value={name}></Input>
         </Col>
-        <Col md={8}>
-          <Button
-            onClick={() => {
-              setName(parseInt(name) + 1);
-            }}
-          >
-            Next
-          </Button>
-          <Button onClick={() => printPDF()} style={{ marginLeft: 10 }}>
-            Save
-          </Button>
-        </Col>
+        {jsonData && (
+          <Col md={8}>
+            <Button
+              onClick={() => {
+                setName(parseInt(name) + 1);
+              }}
+              disabled={name >= jsonData.length}
+            >
+              Next
+            </Button>
+            <Button
+              onClick={() => {
+                setName(parseInt(name) - 1);
+              }}
+              disabled={name <= 0}
+            >
+              Pre
+            </Button>
+            <Button onClick={() => printPDF_v2()} style={{ marginLeft: 10 }}>
+              Save
+            </Button>
+          </Col>
+        )}
+
         <Col span={24}>
           <div>
             <input type="file" onChange={handleFileChange} />
