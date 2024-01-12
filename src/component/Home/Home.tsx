@@ -118,6 +118,7 @@ export default function Home() {
         const rs: any = {};
         arrayConfigValue.forEach((element: any) => {
           if (dateArray.includes(element)) {
+            console.log(55555, ketQuaLoc[0][element]);
             if (typeof ketQuaLoc[0][element] === 'string') {
               // eslint-disable-next-line @typescript-eslint/no-var-requires
               const moment = require('moment');
