@@ -277,8 +277,9 @@ export default function Home() {
                 {/* Object?.keys(fullConfig)?.filter((item: any) => configExclude1?.includes(item))?.length > 0 && ( */}
                 <S.ExcludeConfig2>
                   <S.Date>
-                    Quảng Nam, ngày {fullConfig?.dateValue || '    '} tháng {fullConfig?.monthValue || '    '} năm{' '}
-                    {fullConfig?.yearValue || '    '}
+                    Quảng Nam, ngày {fullConfig?.dateValue ? fullConfig?.dateValue : '    '} tháng{' '}
+                    {fullConfig?.monthValue ? fullConfig?.monthValue : '    '} năm{' '}
+                    {fullConfig?.yearValue ? fullConfig?.yearValue : '    '}
                   </S.Date>
                 </S.ExcludeConfig2>
                 {/* )} */}
